@@ -1,0 +1,574 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ECOmove {% block title%}{% endblock %}</title>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+        <!-- Favicons -->
+        <link href="{% static 'app/images/RM-Icon.png' %}" rel="icon">
+
+        <!-- CSS -->
+        {% block CSS %}
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/index.css' %}"/>cd
+        {% endblock %}
+
+        
+    </head>
+    <body>
+    <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0  ">
+        <div class="container padding">
+            <!-- Logo -->
+            <div class="fixedLogo">
+            <a href="#"><div class="logo" class="h-8 size bg-dark">ECOmove</div></a>
+            </div>
+            <!-- Navbar toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse backGround" id="navbarCollapse">
+            <!-- Nav -->
+            <div class="navbar-nav mx-lg-auto">
+                <a class="nav-item nav-link {% if navbar == 'index' %}active {% endif %}" href="{% url 'index' %}" aria-current="page">Inicio</a>
+                <a class="nav-item nav-link" href="{% url 'index' %}#about">Sobre</a>
+                <a class="nav-item nav-link {% if navbar == 'projects' %} active {% endif %}" href="{% url 'projects' %}">Projetos</a>
+                <a class="nav-item nav-link" href="{% url 'index' %}#team">Equipe</a>
+                <a class="nav-item nav-link" href="{% url 'index' %}#contact">Contato</a>
+                <a class="nav-item nav-link" href="{% url 'index' %}#qna">Perguntas e Respostas</a>
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link {% if navbar == 'community' %} active {% endif %}" href="{% url 'community' %}">Comunidade</a>
+                {% else %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                         <!-- dropdown user profile -->
+                         <div id="dropdown" class="img ">
+                          <ul class="navbar-nav mb-2 mb-lg-0 "> 
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <img src="{{profile.profile_image.url}}" alt="">
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'userprofile' %}"><i class="fas fa-sliders-h fa-fw"></i> View Profile</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  {% if user.schoolprofile %}
+                                    {% if user.schoolprofile.is_verified %}
+                                    <li><a class="dropdown-item" href="{% url 'schoolprofile' school_profile.pk %}"><i class="fas fa-cog fa-fw"></i> School Profile</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'pendingschoolprofile'%}"><i class="fas fa-cog fa-fw"></i> Pending School Profile</a></li>
+                                    {% endif %}
+                                  {% else %}
+                                  <li><a class="dropdown-item" href="{% url 'schoolprofilecreate' %}"><i class="fas fa-cog fa-fw"></i> Create School Profile</a></li>
+                                  {% endif %}
+                                  <li><hr class="dropdown-divider"></li>
+                                  {% if user.is_superuser %}
+                                  <li><a class="dropdown-item" href="{% url 'admin:index' %}"><i class="fas fa-user-lock fa-fw"></i> Admin Pannel</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  
+                                  {% else %}
+                                  {% endif %}
+                                  <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
+                                </ul>
+                              </li>
+                           </ul>
+                        </div>  
+                        <!--end dropdown user profile -->
+                {% else %}
+                {% endif %}
+            </div>
+            </div>
+            </div>
+        </nav>
+        <!-- End of Navigation bar -->
+
+        {% block content %}
+
+        <!-- Hero Section -->
+        <section id="hero" class="d-flex align-items-center">
+            <div class="container">
+                <h1>Bem vindo ao <span>ECOmove </span></h1>
+                <h2>Junte-se a nós na construção de um futuro melhor através de suas doações.</h2>
+                {% if user.is_authenticated %}
+                  {% comment "" %}No action{% endcomment %}
+                {% else %}
+                <div class="d-flex">
+                  <a href="{% url 'signup' %}" class="btn-get-started">Cadastre-se</a> &nbsp;&nbsp;&nbsp;
+                  <a href="{% url 'login' %}" class="btn-get-started"><span>Entrar</span></a>
+                </div>
+                {% endif %}
+            </div>           
+        </section>
+        <!--End of Hero Section -->
+
+        <!-- Box Section -->
+        <section id="box" class="d-flex align-items-center">
+        <div class="container position-relative">
+          <div class="row icon-boxes">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box">
+                <div class="icon"><i class="fa fa-gift"></i></div>
+                <h4 class="title text-center"><a href="">Doação de Móveis Usados</a></h4>
+                <p class="description">Contribua para nossa causa doando móveis usados em boas condições. Desde sofás e mesas até camas e armários, cada peça pode fazer a diferença na vida de alguém que precisa.</p>
+              </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box">
+                <div class="icon"><i class="fa fa-file-text-o"></i></div>
+                <h4 class="title text-center"><a href="">Doação de Roupas, Agasalhos e Calçados</a></h4>
+                <p class="description text-center">Ajude-nos a vestir e proteger aqueles que estão em necessidade doando roupas, agasalhos e calçados usados, mas em boas condições. De roupas de inverno a roupas de verão, cada peça pode proporcionar conforto e dignidade às pessoas menos privilegiadas.</p>
+              </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box">
+                <div class="icon"><i class="fas fa-desktop"></i></div>
+                <h4 class="title text-center"><a href="">Doação de Alimentos</a></h4>
+                <p class="description text-center">Ajude-nos a combater a fome doando alimentos não perecíveis e itens básicos de alimentação. Arroz, feijão, macarrão, enlatados e outros alimentos não perecíveis são essenciais para garantir que ninguém passe fome em nossa comunidade.</p>
+              </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box">
+                <div class="icon"><i class="fa fa-handshake-o"></i></div>
+                <h4 class="title text-center"><a href="">Doações em Geral</a></h4>
+                <p class="description text-center">Além de móveis, roupas e alimentos, aceitamos outras doações essenciais, como produtos de higiene pessoal, materiais escolares, brinquedos e itens de uso doméstico. Toda e qualquer contribuição é bem-vinda e fará a diferença na vida daqueles que mais necessitam.</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        </section><!-- End of Box Section -->
+
+        <!-- About Section -->
+        <section id="about" class="about">
+          <div class="container">
+    
+            <div class="section-title">
+              <h2>Sobre nós</h2>
+              <p>Bem-vindo ao ECOmove, onde nossa missão é fazer a diferença ao promover a sustentabilidade e o bem-estar comunitário através da doação e reutilização de móveis usados.</p>
+            </div> 
+            <div class="row content">
+              <div class="col-lg-6">
+                <div class="pt-4 pt-lg-0">
+                  Imaginamos um mundo onde a solidariedade e a responsabilidade ambiental se entrelaçam para criar comunidades mais fortes e resilientes. Visualizamos um futuro onde cada móvel doado representa não apenas um ato de generosidade, mas também uma oportunidade de transformar vidas e cuidar do nosso planeta.
+                </div>
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0">
+                <p>
+                  No ECOmove, convidamos você a fazer parte deste movimento de mudança positiva. Seja você um doador, voluntário ou defensor, cada pessoa desempenha um papel vital em nossa missão de promover um mundo mais sustentável e solidário.
+
+Junte-se a nós hoje e seja parte da transformação!
+
+ECOmove - Juntos, Movendo-se Rumo a um Futuro Sustentável e Colaborativa.                 
+                </p>
+              </div>
+            </div>
+          </div>
+        </section><!-- End About Section -->
+    
+        <!-- Counts Section -->
+        <section id="counts" class="counts section-bg">
+          <div class="container">
+    
+            <div class="row justify-content-end">
+    
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="countbox">
+                  <h1 class="count" data-target="1254">0</h1>
+                  <p>Happy Donaters</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="countbox">
+                  <h1 class="count" data-target="500">0</h1>
+                  <p>Projects Completed</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="countbox">
+                  <h1 class="count" data-target="400">0</h1>
+                  <p>Schools Helped</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="countbox">
+                  <h1 class="count" data-target="1000">0</h1>
+                  <p>Toal Funds Raised</p>
+                </div>
+              </div>
+    
+            </div>
+    
+          </div>
+        </section><!-- End Counts Section -->
+
+        
+
+        <!-- Ongoing Projects Section -->
+        <section class="projects" id="ongoing"  class="projects section-bg">
+
+          
+
+          <div class="container">
+
+            <div class="section-title">
+              <h2>Projetos em andamento</h2>
+              <p>Fit casa Rio Bonito - O projeto integrador ECOmove tem como objetivo principal promover a reutilização de móveis, recebimento de ofertas alimentos e outros objetos, contribuindo para a economia circular local e a sustentabilidade ambiental. Nosso foco está em facilitar a troca e doação de produtos como móveis, roupas, agasalhos, calçados, alimentos não perecíveis, e doações em geral, entre os usuários, criando uma plataforma que permita encontrar novos lares com essas necessidades. Além disso, buscamos contribuir para a conscientização sobre a importância da economia circular, promovendo uma mudança de mentalidade em relação ao consumo..</p>
+            </div>
+
+            <div class="row">
+
+              {% for post in posts %}
+              
+                {% if post.is_approved %}
+                {% if post.donate_amount > post.current_amount %}
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="icon-box">
+                  <div class="project-image">
+                    <img src="{{post.post_image.url}}">
+                  </div>
+                  <h4><a href="">{{post.author.school_name}}</a></h4>
+                  {% comment %} <p>Bogaswewa Samadhi Montessori with nearly 28 children had no place to learn.</p> {% endcomment %}
+                  <div class="progressbar">
+                    <h4>Progress</h4>
+                    <div class="progress">
+                      
+                      <div class="progress-bar" role="progressbar" style= "width: {% widthratio post.current_amount post.donate_amount 100 %}% " aria-valuenow="{% widthratio post.current_amount post.donate_amount 100 %}" aria-valuemin="0" aria-valuemax="100">{% widthratio post.current_amount post.donate_amount 100 %}%</div>
+                      
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <p>Goal : USD {{post.donate_amount}}</p>
+                      </div>
+                      <div class="col-sm-6">
+                          <p>Current : USD {{post.current_amount}}</p>
+                      </div>
+                  </div>
+                  <button type="button" class="btn donate btn-outline-primary" 
+                    onclick="window.location.href='{% if user.is_authenticated %}{% url 'community' %}{% else %}{% url 'login' %}{% endif %}'">
+                    Doar
+                  </button>
+                </div>
+                </div>
+              </div>
+              
+                {% endif %}
+                {% endif %}
+
+              {% endfor %}
+              
+              {% comment %}
+
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                <div class="icon-box">
+                  <div class="project-image">
+                    <img src="{% static "app/images/school.jpg" %}">
+                  </div>
+                  <h4><a href="">Ukwatta Maha Vidyalaya</a></h4>
+                  <p>Rebuilding the Drinking water supply and collecting funds for a Science Lab.</p>
+                  <div class="progressbar">
+                    <h4>Progress</h4>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <p>Goal : LKR 100,000</p>
+                      </div>
+                      <div class="col-sm-6">
+                          <p>Current : LKR 50,000</p>
+                      </div>
+                  </div>
+                  <button type="button" class="btn donate btn-outline-primary">Donate</button>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                <div class="icon-box">
+                  <div class="project-image">
+                    <img src="{% static "app/images/school.jpg" %}">
+                  </div>
+                  <h4><a href="">Meegoda Kanishta Vidyalaya (Primary School)</a></h4>
+                  <p>Collecting funds for a Computer Lab.</p>
+                  <div class="progressbar">
+                    <h4>Progress</h4>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <p>Goal : LKR 100000</p>
+                      </div>
+                      <div class="col-sm-6">
+                          <p>Current : LKR 25,000</p>
+                      </div>
+                  </div>
+                  <button type="button" class="btn donate btn-outline-primary">Donate</button>
+                </div>
+                </div>
+              </div>
+            </div>
+
+          {% endcomment %}
+
+          </div>
+        </section>
+        <!-- End Ongoing Projects Section -->
+
+        <!-- Team Section -->
+      <section id="team" class="team section-bg">
+        <div class="container">
+
+          <div class="section-title">
+            <h2>Equipe</h2>
+            <p>É uma grande satisfação nos reunirmos com vocês, estudantes da UNIVESP, para compartilhar nossa missão e paixão pelo movimento ECOmove. Como uma equipe comprometida com a sustentabilidade e o impacto social positivo, estamos animados para apresentar nossos objetivos e como vocês podem se envolver nessa iniciativa transformadora.</p>
+          </div>
+
+          <div class="row">
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member">
+                <div class="member-img">
+                  <img src="{% static "app/images/profile-pic (1).png" %}" class="img-fluid" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Dulitha Harasara</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member">
+                <div class="member-img">
+                  <img src="{% static "app/images/profile-pic (2).png" %}" class="img-fluid" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Malmi Ameesha</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member">
+                <div class="member-img">
+                  <img src="{% static "app/images/profile-pic.png" %}" class="img-fluid" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Kavindu Shavinda</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member">
+                <div class="member-img">
+                  <img src="{% static "app/images/profile-pic (3).png" %}" class="img-fluid" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Heshitha Sandeepa</h4>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Team Section -->
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+          <div class="container">
+
+            <div class="section-title">
+              <h2>Contato</h2>
+              <p>Entre em contato conosco para explorar oportunidades de colaboração, compartilhar suas idéias ou perguntar sobre como você pode se juntar à nossa missão de remodelar o futuro da educação.</p>
+            </div>
+            <div class="row mt-5">
+              <div class="col-lg-4">
+                <div class="info">
+                  <div class="address">
+                    <i class="fa fa-map-marker"></i>
+                    <h4>Localização:</h4>
+                    <p>São Paulo, Brasil</p>
+                  </div>
+
+                  <div class="email">
+                    <i class="fa fa-envelope"></i>
+                    <h4>Email:</h4>
+                    <p>PI3GP13@gmail.com</p>
+                  </div>
+
+                  <div class="phone">
+                    <i class="fa fa-phone"></i>
+                    <h4>Telefone:</h4>
+                    <p>+55 1195074-9259</p>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-lg-8 mt-5 mt-lg-0">
+
+                <form action="" method="post" role="form" class="email-form" >
+                  {% csrf_token %}
+                  <div class="row gy-2 gx-md-3">
+                    <div class="col-md-6 form-group">
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group col-12">
+                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group col-12">
+                      <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="text-center col-12"><button class="btn btn-primary" type="submit">Send Message</button></div>
+                    
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section><!-- End Contact Section -->
+
+        <!-- Q & A Section -->
+        <section id="qna" class="section-bg">
+          <div class="container">
+            <div class="section-title">
+              <h2>Perguntas e Respostas</h2>
+              <p>Explore nossa seção de perguntas e respostas para obter informações sobre nossa missão, projetos e como você pode fazer parte da jornada transformadora em direção a um futuro melhor na educação sustentável.</p>
+            </div>
+            <div style="text-align: center;">
+
+              <p>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#request" aria-expanded="false" aria-controls="request">
+                  Como solicitar doação
+                </button>
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#schoolProfile" aria-expanded="false" aria-controls="schoolProfile">
+                  Criar Perfil
+                </button>
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#post" aria-expanded="false" aria-controls="post">
+                  Criar Postagem
+                </button>
+              </p>
+              <div class="collapse" id="request">
+                <div class="card card-body">
+                  Você pode solicitar doações através do nosso site. Clique no ícone do perfil e
+                  navegue até "Criar perfil". você passará por um processo de validação simples para confirmar
+                  detalhes. Depois de verificado, você poderá criar uma solicitação convincente, descrevendo
+                  as necessidades e iniciativas para se conectar com potenciais doadores.
+                </div>
+              </div>
+
+              <div class="collapse" id="schoolProfile">
+                <div class="card card-body">
+                  Compartilhe detalhes importantes sobre você, sua visão e as necessidades específicas que você está
+                  abordando para se conectar com potenciais doadores e apoiadores. Clique no ícone do perfil e navegue até “Cadastre-se”.
+                </div>
+              </div>
+
+              <div class="collapse" id="post">
+                <div class="card card-body">
+                  Depois de criar com sucesso o perfil, libere o poder da sua história elaborando
+                  postagens atraentes. Você pode aprimorar sua narrativa com fotos, vídeos e muito mais. Para garantir a aprovação,
+                  certifique-se de inserir detalhes precisos e válidos, pois cada envio passa por uma validação meticulosa
+                  processo para manter a integridade de nossa plataforma.
+                </div>
+              </div>
+
+            </div>
+          </div> 
+        </section>
+        <!-- End Q & A Section -->
+
+        {% endblock %}
+
+      {% block footer %}
+
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+
+          <div class="footer-top">
+            <div class="container">
+              <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                  <h3>ECOmove</h3>
+                  <p>
+                    São Paulo <br>
+                    Brasil<br>
+                    <br>
+                    <strong>Telefone:</strong> +55 1195074-9259 <br>
+                    <strong>Email:</strong> PI3GP13</br>
+                    @gmail.com<br>
+                  </p>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                  <h4>Links Úteis</h4>
+                  <ul>
+                    <li><a href="{% url 'index' %}">Inicio</a></li>
+                    <li><a href="{% url 'index' %}#about">Sobre</a></li>
+                    <li><a href="{% url 'projects' %}">Projetos</a></li>
+                    <li><a href="{% url 'index' %}#team">Equipe</a></li>
+                    <li><a href="{% url 'index' %}#contact">Contato</a></li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                  <h4>Outros</h4>
+                  <ul>
+                    <li><a href="#">Criar perfil</a></li>
+                    <li><a href="#">Criar postagem</a></li>
+                    <li><a href="{% url 'error404' %}">Termos de serviço</a></li>
+                    <li><a href="{% url 'error404' %}">Política de privacidade</a></li>                    
+                  </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                  <h4>Junte-se ao nosso boletim informativo</h4>
+                  <p>Fique conectado com a nossa missão e seja o primeiro a saber sobre os próximos projetos, eventos e oportunidades para fazer a diferença</p>
+                  <form>
+                    <input type="email" name="email" placeholder="email address"> 
+                    <button type="button" onclick="window.location.href=' {% url 'error404' %}'">Inscreva-se</button>
+            
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        {% endblock %}
+
+        <!-- Main JS File -->
+        <script src="{% static 'app/js/main.js' %}"></script>
+
+        <!-- bootstrap JS CDN link -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
+      </body>
+
+    
+</html>
