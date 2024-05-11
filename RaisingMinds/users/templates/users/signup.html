@@ -76,9 +76,10 @@
                         <input type="password" class="form-control rounded-left" name="password2" placeholder="Confirm Password" oninput="validatePasswordMatch()" oninput="validatePasswordMatch()" required>
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Inscrever-se</button>
+                    <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                        <button type="submit" style="background-color: green; color: white; font-weight: bold;">Inscrever-se</button>
                     </div>
+                    
                     <div id="passwordError" style="color: red;"></div>
                     <div class="text-center">
                         <p class="mt-2">Você tem uma conta? <a href="{% url 'login' %}"> Entre aqui</p>
