@@ -135,13 +135,16 @@ section {
 
 /* ---------- Hero Section ---------- */
 
-  #hero {
-    width: 100%;
-    height: 100vh;
-    background: url("static/app/images/projetos.jpg") top left;
-    background-size: cover;
-    position: relative;
-  }
+  
+#hero {
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://guardemais.com.br/wp-content/uploads/2020/02/doacao-de-moveis.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
   
   #hero:before {
     content: "";
