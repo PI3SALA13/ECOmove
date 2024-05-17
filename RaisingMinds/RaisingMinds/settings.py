@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-xut6*mj33d#$gsoya1!qwcw^pj-ah&n5esbx5ov6ylrz2jare^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -169,6 +168,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'raisingmindsfoundation@gmail.com'  
 EMAIL_HOST_PASSWORD = 'hslg eumv naye mmvr'  
 EMAIL_PORT = 587 
+
+
+
 
 # paypal settings
 PAYPAL_RECEIVER_EMAIL = 'RaisingMinds@gmail.com'
