@@ -71,7 +71,7 @@ html{
     #hero {
       width: 100%;
       height: 100vh;
-      background: url("static/app/images/projetos.png") top left;
+      background-image: url('https://static.escolakids.uol.com.br/2021/05/ecologia.jpg');
       background-size: cover;
       position: relative;
     }
