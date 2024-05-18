@@ -72,7 +72,7 @@ aside#left-aside div#profile-card {
 aside#left-aside div#profile-card div#background {
     height: 60px;
     border-radius:6px 6px 0 0;
-    background: linear-gradient(90deg, rgb(17, 16, 50) 0%, rgb(23, 23, 193) 100%    );
+    background: linear-gradient(90deg, rgb(17, 16, 50) 0%, hsl(110, 86%, 25%); 100%    );
     -webkit-border-radius:6px 6px 0 0;
     -moz-border-radius:6px 6px 0 0;
     -ms-border-radius:6px 6px 0 0;
@@ -156,7 +156,7 @@ aside#left-aside div#profile-groups section ul li {
 
 /*************Post1,Post2 post3..., hover************** */
 aside#left-aside div#profile-groups section ul li span:last-child:hover {
-    color: #0073b1;
+    color: hsl(110, 86%, 25%);
     text-decoration: underline;
 }
 
@@ -255,7 +255,7 @@ main#main-section div#post-box div#button-box button#btn-post {
 }
 
 main#main-section div#post-box div#button-box button#btn-post:hover {
-    color: #0073b1;
+    color: hsl(110, 86%, 25%);
 }
 
 main#main-section
@@ -361,7 +361,7 @@ main#main-section article div#post-author a > div > div div strong {
 }
 
 main#main-section article div#post-author a > div > div div strong:hover {
-    color: #0073b1;
+    color: hsl(110, 86%, 25%);
 }
 
 main#main-section article div#post-author a > div > div div span span {
@@ -375,13 +375,13 @@ main#main-section article div#post-data p {
 }
 
 main#main-section article div#post-data p span {
-    color: #0073b1;
+    color: hsl(110, 86%, 25%);
     font-weight: bold;
     cursor: pointer;
 }
 
 main#main-section article div#post-data p a {
-    color: #0073b1;
+    color: hsl(110, 86%, 25%);
     font-weight: bold;
 }
 
