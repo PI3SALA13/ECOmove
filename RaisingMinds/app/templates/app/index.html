@@ -137,7 +137,7 @@
                 <p class="description text-center">Ajude-nos a combater a fome doando alimentos não perecíveis e itens básicos de alimentação. Arroz, feijão, macarrão, enlatados e outros alimentos não perecíveis são essenciais para garantir que ninguém passe fome em nossa comunidade.</p>
               </div>
             </div>
-    
+                
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box">
                 <div class="icon"><i class="fa fa-handshake-o"></i></div>
@@ -297,7 +297,7 @@ ECOmove - Juntos, Movendo-se Rumo a um Futuro Sustentável e Colaborativa.
                 </button>
 
                 <button style="background-color: green; color: white; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#post" aria-expanded="false" aria-controls="post">
-                  Criar Postagem
+                  Criar Postagem para doação
                 </button>
               </p>
               <div class="collapse" id="request">
@@ -376,16 +376,12 @@ ECOmove - Juntos, Movendo-se Rumo a um Futuro Sustentável e Colaborativa.
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                   <h4>Junte-se ao nosso boletim informativo</h4>
                   <p>Fique conectado com a nossa missão e seja o primeiro a saber sobre os próximos projetos, eventos e oportunidades para fazer a diferença</p>
-                  <form>
-                    <input type="email" name="email" placeholder="email address"> 
-                    <button type="button" onclick="window.location.href=' {% url 'error404' %}'">Inscreva-se</button>
-            
+                  <form method="POST" action="{% url 'error404' %}">
+                      {% csrf_token %}
+                      <input type="email" name="email" placeholder="Endereço de e-mail" required> 
+                      <button type="submit">Inscreva-se</button>
                   </form>
-                </div>
-
               </div>
-            </div>
-          </div>
         {% endblock %}
 
         <!-- Main JS File -->
