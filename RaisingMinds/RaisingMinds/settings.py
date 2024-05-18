@@ -134,7 +134,7 @@ LANGUAGE_CODE = 'en-us'
 
 # TIME_ZONE = 'UTC'
 
-TIME_ZONE = 'Asia/Colombo'
+TIME_ZONE = 'Brazil'
 
 USE_I18N = True
 
