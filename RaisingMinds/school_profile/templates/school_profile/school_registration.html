@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>form</title>
+  <title>Formulário</title>
   <!-- bootstrap CDN links -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/jax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
@@ -35,33 +35,33 @@
           <h2 class="text-center mb-4">Formulário de Inscrição</h2>
           <div class="form-group mb-2">
             <label for="schoolName" class="mb-1">Nome:</label>
-            <input type="text" class="form-control" id="schoolName" placeholder="Enter School Name" required
+            <input type="text" class="form-control" id="schoolName" placeholder="Nome" required
               name="schoolName">
           </div>
 
           <div class="form-group mb-2">
             <label for="schoolPrincipalName" class="mb-1">Primeiro nome:</label>
-            <input type="text" class="form-control" id="schoolPrincipalName" placeholder="Enter Principal name "
+            <input type="text" class="form-control" id="schoolPrincipalName" placeholder="Primeiro nome"
               required name="principalName">
           </div>
 
           <div class=" mb-2">
             <div class="form-group col">
               <label for="Email1" class="mb-1">E-mail:</label>
-              <input type="email" class="form-control" id="Email1" placeholder="Enter email" required name="schoolEmail">
+              <input type="email" class="form-control" id="Email1" placeholder="E-mail" required name="E-mail">
               <div class="invalid-feedback">  Por favor insira o endereço de e-mail válido.
               </div>
             </div>
           </div>
           <div class="row mb-2">
             <div class="form-group col">
-              <label for="schoolProvince" class="mb-1">Provincia:</label>
-              <input type="text" class="form-control" id="schoolProvince" placeholder="Enter school province" required
+              <label for="schoolProvince" class="mb-1">País:</label>
+              <input type="text" class="form-control" id="schoolProvince" placeholder="País" required
                 name="schoolProvince">
             </div>
             <div class="form-group col">
-              <label for="agentDesignation" class="mb-1">Destrito :</label>
-              <input type="text" class="form-control" id="agentDesignation" placeholder="Enter school District"
+              <label for="agentDesignation" class="mb-1">Cidade :</label>
+              <input type="text" class="form-control" id="agentDesignation" placeholder="Cidade" required
                 required name="schoolDistrict">
             </div>
 
@@ -69,52 +69,53 @@
           <div class="row">
             <div class="form-group col">
               <label for="phoneNumber" class="mb-1">Telefone:</label>
-              <input type="number" class="form-control" id="password" placeholder="Enter Phone Number" required
+              <input type="number" class="form-control" id="password" placeholder="Telefone" required
                 name="phoneNo">
             </div>
 
             <div class="form-group col mb-2">
-              <label for="Select" selected class="mb-1">School Type:</label>
+              <label for="Select" selected class="mb-1">Tipo de doação:</label>
               <select class="form-select" id="Select"name="schoolType" required>
-                <option selected disabled value="" >Select School Type</option>
-                <option>Mixed School</option>
-                <option>Boys School</option>
-                <option>Girls School</option>
-                <option>Pre School </option>
+                <option selected disabled value="" >Selecionar tipo de doação</option>
+                <option>Móveis</option>
+                <option>Roupas e Agasalhos</option>
+                <option>Calçados</option>
+                <option>Alimentos não pereciveis</option>
+                <option>Outros</option>
               </select>
             </div>
           </div>
 
           <div class="form-group mb-2">
-            <label for="Textarea1" class="mb-1">School Address:</label>
-            <textarea class="form-control" id="Textarea1" rows="3" placeholder="Enter school address here..." required
+            <label for="Textarea1" class="mb-1">Endereço:</label>
+            <textarea class="form-control" id="Textarea1" rows="3" placeholder="Endereço" required
               name="schoolAddress"></textarea>
           </div>
           <div class="form-group mb-3">
-            <label for="Textarea1" class="mb-1">Description(Optional):</label>
-            <textarea class="form-control" id="Textarea1" rows="3" placeholder="Enter your text here..." name="description"></textarea>
+            <label for="Textarea1" class="mb-1">Descrição (opcional):</label>
+            <textarea class="form-control" id="Textarea1" rows="3" placeholder="Descreva detalhes da doação" name="description"></textarea>
           </div>
           <div class="row">
 
             <div class="form-group mb-2 col Vdoc">
-              <label for="File1"> Verification document : <a href="{% static 'school_profile/verification/School Verification Document.pdf' %}"  target="_blank">Download template</a></label>
+              <label for="File1"> Inserir imagem da doação <a href="{% static 'school_profile/verification/School Verification Document.pdf' %}"  target="_blank"></a></label>
 
                <!--  link with  modal -->
              <button type="button" id="btn-agreement" data-bs-toggle="modal" data-bs-target="#exampleModal"
             name="btn-agreement">
-            <span class="material-symbols"><span class="hidden"> | &nbsp &nbsp</span> Terms and Conditions</span>
+            <span class="material-symbols"><span class="hidden"> | </span> Termos e condições</span>
           </button> 
 
               <input type="file" class="form-control-file" id="File1" accept="application/pdf"name="verificationDoc"required>
               <div class="invalid-feedback">
-                please add school Verification documnet.
+                Adicionar documento.
               </div>
             </div>
             <div class="form-group mb-3 col imageP">
-              <label for="image">School profile picture : </label><br>
+              <label for="image">Foto perfil : </label><br>
               <input type="File" class="form-control-file2" id="image" accept="image/jpeg,image/png,image/jpg," name="schoolProfileImage" required>
               <div class="invalid-feedback">
-                please add school profile image.
+                Adicionar imagem para perfil.
               </div>
 
             </div>
@@ -128,57 +129,65 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Termos e condições</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                   <div style="align-items:center;display: flex;text-align: justify;">
                     <ul>
-                     <li> Acceptance of Terms
-                        <p>By accessing or using the School Donation Web Application , you agree to comply with and be bound by the following terms and conditions. If you do not agree to these terms, please do not use the platform.</p>
+                     <li> 
+                      Aceitação dos Termos
+                        <p>
+                          Ao acessar ou usar o Software Web ECOmove de Doações em geral, você concorda em cumprir e ficar vinculado aos seguintes termos e condições. Se você não concorda com estes termos, não utilize a plataforma.</p>
                      </li>
-                     <li> Create School Profiles
+                     <li> Criar doação
                         <ul type="a">
-                          <li>Users must register an account to create school profiles.</li>
-                          <li>All information provided during registration and in school profiles must be accurate and complete.</li>
-                          <li>Users must provide accurate school verification documents.</li>
-                          <li>Users are responsible for maintaining the confidentiality of their account credentials.</li><br>
+                          <li>Os usuários devem registrar uma conta para criar doações</li>
+                          <li>Todas as informações fornecidas durante a inscrição das doações devem ser precisas e completas.</li>
+                          <li>Os usuários devem fornecer documentos de verificação precisos.</li>
+                          <li>Os usuários são responsáveis ​​por manter a confidencialidade das credenciais de suas contas.</li><br>
                         </ul>
                       </li>  
-                      <li> School Profiles and Postings
+                      <li> Perfis e postagens de doação
                         <ul type="a">
-                          <li>Users creating school profiles must be authorized representatives of the respective educational institution.</li>
-                          <li>School profiles and postings must adhere to the laws and regulations of Sri Lanka.</li>
-                          <li>The platform reserves the right to review and remove any school profile or posting that violates these terms or is deemed inappropriate.</li><br>
+                          <li>Os usuários que criam postagem de doações devem ser representantes autorizados da respectiva doação.</li>
+                          <li>A plataforma reserva-se o direito de revisar e remover qualquer perfil ou postagem que viole estes termos ou seja considerada inadequada.</li><br>
                         </ul>
                       </li>  
-                      <li> Donation Process</li>
-                        <p>The platform does not guarantee the fulfillment of all donation requests and is not responsible for any unmet needs.</p>
-                      <li> Privacy and Data Security
+                      <li> 
+                        Processo de Doação</li>
+                        <p>A plataforma não garante o atendimento de todos os pedidos de doação e não se responsabiliza por eventuais necessidades não atendidas.</p>
+                      <li> 
+                        Privacidade e segurança de dados
                         <ul Type="a">
-                            <li>The platform will collect, store, and process user data in accordance with its Privacy Policy.</li>
-                            <li>Users are responsible for the security of their account information and are encouraged to review the Privacy Policy.</li><br>
+                            <li>A plataforma coletará, armazenará e processará os dados do usuário de acordo com sua Política de Privacidade.</li>
+                            <li>Os usuários são responsáveis ​​pela segurança das informações de suas contas e são incentivados a revisar a Política de Privacidade.</li><br>
                           </ul>
                       </li>
-                      <li> Code of Conduct
+                      <li> Código de Conduta
                         <ul Type="a">
-                          <li>Users agree to conduct themselves in a respectful and lawful manner when using the platform.</li>
-                          <li>Any form of illegal or unethical behavior will not be tolerated.</li><br>
+                          <li>Os usuários concordam em se comportar de maneira respeitosa e legal ao usar a plataforma.</li>
+                          <li>
+                            Qualquer forma de comportamento ilegal ou antiético não será tolerada.</li><br>
                         </ul> 
                       </li>
-                      <li> Intellectual Property
+                      <li> 
+                        Propriedade intelectual
                           <ul Type="a">
-                          <li>Users retain ownership of the content they submit to the platform.</li>
-                          <li>The platform may use aggregated and anonymized data for statistical and analytical purposes.</li><br>
+                          <li>
+                            Os usuários mantêm a propriedade do conteúdo que enviam à plataforma.</li>
+                          <li>A plataforma poderá utilizar dados agregados e anonimizados para fins estatísticos e analíticos.</li><br>
                         </ul> 
                       </li>
-                      <li> Modification of Terms</li>
-                       <p>The platform reserves the right to modify these terms and conditions at any time. Users will be notified of changes, and continued use of the platform constitutes acceptance of the modified terms.</p>
-                      <li> Termination</li>
-                        <p>The platform reserves the right to terminate or suspend user accounts that violate these terms or for any other reason at its discretion.</p>
-                      <li>Governing Law</li>
-                        <p>These terms and conditions are governed by the laws of Sri Lanka.</p>
+                      <li>
+                        Modificação dos Termos</li>
+                       <p>A plataforma reserva-se o direito de modificar estes termos e condições a qualquer momento. Os usuários serão notificados sobre as alterações e o uso continuado da plataforma constitui aceitação dos termos modificados.</p>
+                      <li> Terminação</li>
+                        <p>A plataforma reserva-se o direito de encerrar ou suspender contas de usuários que violem estes termos ou por qualquer outro motivo a seu critério.</p>
+                      <li>
+                        Lei Aplicável</li>
+                        <p>Estes termos e condições são regidos pelas leis do Brasil.</p>
                       </ul> 
                   </div>
 
@@ -193,15 +202,17 @@
   <!----------------------------end modal------------------------------------->
           <div class="form-check mb-4">
             <input type="checkbox" class="form-check-input" id="ageement" required>
-            <label class="form-check-label" for="ageement">I accept all the terms and conditions.</label>
+            <label class="form-check-label" for="ageement">
+              Aceito todos os termos e condições.</label>
           </div>
 
           <div class="row">
             <div class="col-6">
-              <button type="submit" class="btn btn-primary col-12 btnLast">SUBMIT</button>
+              <button type="submit" class="btn btn-primary col-12 btnLast">ENVIAR</button>
             </div>
             <div class="col-6">
-              <button type="reset" class="btn btn-primary col-12 btnLast">RESET</button>
+              <button type="reset" class="btn btn-primary col-12 btnLast">
+                REINICIAR</button>
             </div>
           </div>
 

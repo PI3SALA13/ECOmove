@@ -20,7 +20,7 @@
                         <img src="{{school_profile.school_profile_img.url}}" alt="">
 
                         <strong id="profile-name" class="letter-spacing">{{school_profile.school_name}}</strong>
-                        <small>School Profile</small>
+                        <small>Nome completo</small>
                         <!-- <span id="schoolName">{{school_profile.province}} Province {{school_profile.district}}</strong> -->
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         <button id="btn-post" style="border-radius:10px;">
                             <!--  link with  modal -->
                             <span class="fas fa-edit" aria-hidden="true" data-bs-toggle="modal"data-bs-target="#exampleModal"></span>
-                            <span id="btn-text" type="button"  data-bs-toggle="modal"data-bs-target="#exampleModal">Create Post</span>
+                            <span id="btn-text" type="button"  data-bs-toggle="modal"data-bs-target="#exampleModal">Criar postagem</span>
                         </button>
                         <button id="btn-picture" style="border-radius: 0px 10px 10px 0px;"  data-bs-toggle="modal"data-bs-target="#exampleModal">
                             <span class="fas fa-photo" aria-hidden="true"></span>
@@ -90,7 +90,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Criar postagem</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -103,8 +103,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary ">Create</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary ">Criar</button>
                             </div>
                         </div>
                     </div>
@@ -119,14 +119,15 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false" style="width:15% ;">
-                                    <button>Sort by</button>
+                                    <button>
+                                        Ordenar por</button>
                                 </a>
                                 <ul class="dropdown-menu ">
-                                    <li><a class="dropdown-item" href="#"></i>Date</a></li>
+                                    <li><a class="dropdown-item" href="#"></i>Data</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"></i> Name</a></li>
+                                    <li><a class="dropdown-item" href="#"></i> Nome</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -163,28 +164,7 @@
                         <img src="{{post.post_image.url}}">
                         <p>
                             {{post.content}}
-                        </p>
-                    
-                        <div class="progressbar ">
-                            <h4 class="mb-3">Progress</h4>
-                            <div class="progress" >
-                              <div class="progress-bar" role="progressbar" style="width: {% widthratio post.current_amount post.donate_amount 100 %}%;" aria-valuenow="{% widthratio post.current_amount post.donate_amount 100 %}" aria-valuemin="0" aria-valuemax="100">{% widthratio post.current_amount post.donate_amount 100 %}%</div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-6 mt-1">
-                                  <p>Goal : USD {{post.donate_amount}}</p>
-                              </div>
-                              <div class="col-sm-6 mt-1">
-                                  <p>Current : USD {{post.current_amount}}</p>
-                              </div>
-                          </div>
-                          <div  class="text-center">
-                            <button type="button" class="btn donate btn-outline-primary mb-5" onclick="window.location.href='{% url 'checkout' post.id %}'"
-                            {% if post.donate_amount <= post.current_amount %}disabled{% endif %} >
-                            {% if post.donate_amount <= post.current_amount %}Completed{% else %}Donate{% endif %}
-                        </button>
-                          </div>
-                          
+                        </p>                          
                         </div>
 
                     </div>
@@ -201,31 +181,31 @@
             <div id="dis-section">
                 <div class="right-text ">
                   
-                    <h5 class="text-md-center fw-bold mb-3">School Details</h5>
+                    <h5 class="text-md-center fw-bold mb-3">Detalhes</h5>
                     <ul>
                       <li>
-                        <p>School Name : {{school_profile.school_name}}</p>
+                        <p>Nome : {{school_profile.school_name}}</p>
                       </li>
                       <li>
-                        <p>School Type : {{school_profile.school_type}}</p>
+                        <p>Genêro : {{school_profile.school_type}}</p>
                       </li>
                       <li>
-                        <p>Province : {{school_profile.province}}</p>
+                        <p>País: {{school_profile.province}}</p>
                       </li>
                       <li>
-                        <p>District : {{school_profile.district}}</p>
+                        <p>Estado : {{school_profile.district}}</p>
                       </li>
                       <li>
-                        <p>School Address : {{school_profile.address}}</p>
+                        <p>Endereço: {{school_profile.address}}</p>
                       </li>
                       <!-- <li>
                         <p>Description  : {{school_profile.Description}}</p>     
                       </li>  -->
                       <li>
-                        <p >Principal's Name : {{school_profile.principal_name}}</p>
+                        <p >Primeiro Nome: {{school_profile.principal_name}}</p>
                       </li> 
                       <li>
-                        <p >Contact : {{school_profile.school_telephone}}</p>
+                        <p >Contato: {{school_profile.school_telephone}}</p>
                       </li> 
                       <li>
                         <p >Email : {{school_profile.school_email}} </p>
